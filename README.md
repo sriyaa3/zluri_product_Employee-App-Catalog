@@ -7,7 +7,7 @@ This project demonstrates how enterprises can simplify SaaS app discovery, impro
 
 ## 🌐 Live Demo
 
-👉 [View the Case Study Website](https://sriyaa3.github.io/zluri_product_Employee-App-Catalog/)  
+👉 [View the Case Study Website]([https://sriyaa3.github.io/zluri_product_Employee-App-Catalog/](https://zluri-product-employee-app-catalog.onrender.com/))  
 *(Hosted via GitHub Pages – includes complete case study and interactive app catalog demo.)*
 
 ---
