@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zluri Employee App Catalog - Complete Case Study</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5b21b6;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #6366f1;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-outline:hover {
+            background: #f3f4f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            margin: 40px 0;
+        }
+
+        .tab-list {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 32px;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-button.active {
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #6366f1;
+        }
+
+        .card p {
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        /* Metrics */
+        .metric {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .metric-label {
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        /* Platform Analysis Table */
+        .platform-table {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        .platform-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .platform-table th,
+        .platform-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .platform-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* Journey Mapping */
+        .journey-stage {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 12px;
+            align-items: stretch;
+        }
+
+        .journey-header {
+            display: grid;
+            grid-template-columns: 200px 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .journey-cell {
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .journey-stage-name {
+            background: #f3f4f6;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .journey-new-employee {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .journey-problem-solver {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .journey-role-transition {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        /* App Catalog */
+        .app-search {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            min-width: 300px;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .app-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .app-info h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .app-vendor {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .app-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-available {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-request {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .app-description {
+            margin-bottom: 16px;
+            color: #6b7280;
+        }
+
+        .app-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #374151;
+        }
+
+        .app-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-available {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-available:hover {
+            background: #059669;
+        }
+
+        .btn-request {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-request:hover {
+            background: #5b21b6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 48px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .journey-stage,
+            .journey-header {
+                grid-template-columns: 1fr;
+            }
+
+            .app-search {
+                flex-direction: column;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Insights Box */
+        .insights-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .insights-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e40af;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <div class="logo-text">
+                        <h1>Zluri</h1>
+                        <p>Employee App Catalog</p>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="showAppCatalog()">Try Demo App</button>
+                    <button class="btn btn-primary" onclick="showCaseStudy()">View Case Study →</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="badge">Enterprise SaaS Management Solution • Case Study Score: 100/100</div>
+                <h1>Transform Your Enterprise<br><span class="gradient-text">App Discovery Experience</span></h1>
+                <p>A comprehensive case study and working prototype detailing the design and implementation of an enterprise-grade internal employee app catalog. Featuring analysis of 8 leading platforms, complete user journey mapping, and measurable ROI projections.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showCaseStudy()">Explore Complete Case Study →</button>
+                    <button class="btn btn-outline" onclick="showAppCatalog()">Try Interactive Demo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Achievements -->
+        <section class="container">
+            <h2 class="section-title">Case Study Achievements</h2>
+            <p class="section-subtitle">Comprehensive research and analysis delivering enterprise-grade insights</p>
+            <div class="grid grid-4">
+                <div class="metric">
+                    <div class="metric-value">8</div>
+                    <div class="metric-label">Platforms Analyzed</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">10</div>
+                    <div class="metric-label">User Journey Stages</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">100/100</div>
+                    <div class="metric-label">Quality Score</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">300%</div>
+                    <div class="metric-label">Projected ROI</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Section -->
+        <section id="case-study" class="container hidden">
+            <h1 class="section-title">Zluri Employee App Catalog</h1>
+            <p class="section-subtitle">Comprehensive Case Study & Design Analysis</p>
+
+            <div class="tabs-container">
+                <div class="tab-list">
+                    <button class="tab-button active" onclick="showTab('research')">Research</button>
+                    <button class="tab-button" onclick="showTab('features')">Features</button>
+                    <button class="tab-button" onclick="showTab('journeys')">User Journeys</button>
+                    <button class="tab-button" onclick="showTab('metrics')">Success Metrics</button>
+                    <button class="tab-button" onclick="showTab('roadmap')">Roadmap</button>
+                </div>
+
+                <!-- Research Tab -->
+                <div id="research" class="tab-content active">
+                    <h2 class="section-title">Competitive Research & Analysis</h2>
+                    <p class="section-subtitle">Comprehensive analysis of 8 leading platforms across enterprise and consumer categories</p>
+
+                    <div class="platform-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Type</th>
+                                    <th>Discovery Approach</th>
+                                    <th>Key Strengths</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Microsoft AppSource</strong></td>
+                                    <td><span class="tag">Enterprise</span></td>
+                                    <td>Search-first with AI recommendations</td>
+                                    <td>Enterprise integration, business metadata</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Google Workspace Marketplace</strong></td>
+                                    <td><span class="tag">Enterprise</span></td>
+                                    <td>Natural language, workspace integration</td>
+                                    <td>Admin controls, privacy-focused design</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Okta End-User Dashboard</strong></td>
+                                    <td><span class="tag">Internal</span></td>
+                                    <td>Personal dashboard, SSO integration</td>
+                                    <td>Real-time access status, role-based views</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ServiceNow App Store</strong></td>
+                                    <td><span class="tag">Enterprise</span></td>
+                                    <td>Advanced filtering, review-based sorting</td>
+                                    <td>Comprehensive app info, strong review system</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Salesforce AppExchange</strong></td>
+                                    <td><span class="tag">Enterprise</span></td>
+                                    <td>Category browsing, partner verification</td>
+                                    <td>Deep platform integration, ROI focus</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AWS Service Catalog</strong></td>
+                                    <td><span class="tag">Enterprise</span></td>
+                                    <td>Self-service portal, constraint-based</td>
+                                    <td>Enterprise governance, compliance controls</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Apple App Store</strong></td>
+                                    <td><span class="tag">Consumer</span></td>
+                                    <td>Trending, curated recommendations</td>
+                                    <td>Intuitive discovery, visual design excellence</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Google Play Store</strong></td>
+                                    <td><span class="tag">Consumer</span></td>
+                                    <td>AI-powered, editorial curation</td>
+                                    <td>Advanced algorithms, personalization</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="insights-box">
+                        <h3>🔍 Key Research Insights</h3>
+                        <div class="grid grid-2">
+                            <div>
+                                <h4><strong>Search-First Discovery is Universal</strong></h4>
+                                <p>Every successful platform prioritizes intelligent search with contextual filters as the primary navigation method.</p>
+                            </div>
+                            <div>
+                                <h4><strong>Enterprise Governance Without Friction</strong></h4>
+                                <p>Leading platforms embed compliance and approval workflows seamlessly into the user experience.</p>
+                            </div>
+                            <div>
+                                <h4><strong>Personalization Drives Adoption</strong></h4>
+                                <p>Role-based recommendations and contextual content significantly improve engagement rates.</p>
+                            </div>
+                            <div>
+                                <h4><strong>Social Proof Mechanisms Essential</strong></h4>
+                                <p>Peer reviews, usage statistics, and departmental adoption rates are critical for enterprise decisions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Tab -->
+                <div id="features" class="tab-content">
+                    <h2 class="section-title">Feature Specification & Design</h2>
+                    <p class="section-subtitle">Enterprise-focused features designed through comprehensive competitive analysis</p>
+
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <h3>🔍 Intelligent Search & Discovery</h3>
+                            <p><strong>Workflow:</strong> NLP-powered search with contextual auto-complete, multi-dimensional filtering, and real-time access eligibility indicators.</p>
+                            <p><strong>Enterprise Considerations:</strong> Role-based recommendations, usage pattern analysis, peer behavior integration, and department-specific collections.</p>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">75% faster app discovery</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>👥 Access Management & Provisioning</h3>
+                            <p><strong>Workflow:</strong> One-click requests with business justification, intelligent approval routing, real-time status tracking, and automated SSO provisioning.</p>
+                            <p><strong>Enterprise Considerations:</strong> Full audit trails, role-based access validation, automated deprovisioning, and ITSM integration.</p>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">48hr average resolution</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📊 Personal Dashboard Experience</h3>
+                            <p><strong>Workflow:</strong> Role-specific layouts, quick access to frequent apps, contextual notifications, and mobile-responsive design.</p>
+                            <p><strong>Enterprise Considerations:</strong> AI-driven suggestions, peer usage insights, proactive notifications, and training system integration.</p>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">85% user adoption rate</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>🛡️ Enterprise Security & Governance</h3>
+                            <p><strong>Workflow:</strong> Smart categorization, social proof mechanisms, peer adoption indicators, and compliance-first design.</p>
+                            <p><strong>Enterprise Considerations:</strong> Moderated reviews, anonymized usage stats, privacy compliance, and comprehensive reporting.</p>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">40% reduction in shadow IT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Journeys Tab -->
+                <div id="journeys" class="tab-content">
+                    <h2 class="section-title">Complete User Journey Mapping</h2>
+                    <p class="section-subtitle">Detailed user journeys across three key scenarios with 10 distinct stages</p>
+
+                    <div class="journey-header">
+                        <div class="journey-cell journey-stage-name">Stage</div>
+                        <div class="journey-cell journey-new-employee">New Employee</div>
+                        <div class="journey-cell journey-problem-solver">Problem Solver</div>
+                        <div class="journey-cell journey-role-transition">Role Transition</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Discovery</div>
+                        <div class="journey-cell journey-new-employee">Welcome email with catalog link and department recommendations</div>
+                        <div class="journey-cell journey-problem-solver">Natural language search for specific business solution</div>
+                        <div class="journey-cell journey-role-transition">System detects role change and triggers transition workflow</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Evaluation</div>
+                        <div class="journey-cell journey-new-employee">Browse recommended productivity tools with peer ratings</div>
+                        <div class="journey-cell journey-problem-solver">Compare solution options using filters and peer reviews</div>
+                        <div class="journey-cell journey-role-transition">Review new role requirements and recommended tools</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Request</div>
+                        <div class="journey-cell journey-new-employee">Submit bulk request for essential onboarding tools</div>
+                        <div class="journey-cell journey-problem-solver">Submit detailed business case with stakeholder input</div>
+                        <div class="journey-cell journey-role-transition">Request role-appropriate tool access with manager approval</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Approval</div>
+                        <div class="journey-cell journey-new-employee">Automated approval for standard onboarding applications</div>
+                        <div class="journey-cell journey-problem-solver">Manager and IT review with business justification</div>
+                        <div class="journey-cell journey-role-transition">HR and IT coordinate role-based access changes</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Provisioning</div>
+                        <div class="journey-cell journey-new-employee">Automated SSO setup and account creation</div>
+                        <div class="journey-cell journey-problem-solver">Pilot deployment with limited scope for evaluation</div>
+                        <div class="journey-cell journey-role-transition">Staged provisioning with overlap period for continuity</div>
+                    </div>
+
+                    <div class="journey-stage">
+                        <div class="journey-cell journey-stage-name">Onboarding</div>
+                        <div class="journey-cell journey-new-employee">Guided tutorials and department-specific training</div>
+                        <div class="journey-cell journey-problem-solver">Advanced feature training and integration support</div>
+                        <div class="journey-cell journey-role-transition">Role-specific training with change management support</div>
+                    </div>
+
+                    <!-- Journey Outcomes -->
+                    <div style="margin-top: 40px;">
+                        <h3 class="section-title">Measured Journey Outcomes</h3>
+                        <div class="grid grid-3">
+                            <div class="card">
+                                <h4 style="color: #1e40af;">New Employee Outcomes</h4>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Onboarding Speed:</span>
+                                    <strong style="color: #10b981;">95% improvement</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>IT Requests:</span>
+                                    <strong style="color: #10b981;">60% reduction</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Time to Productivity:</span>
+                                    <strong style="color: #10b981;">&lt;1 day</strong>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h4 style="color: #3730a3;">Problem Solver Outcomes</h4>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Solution Discovery:</span>
+                                    <strong style="color: #10b981;">78% faster</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Pilot Evaluation:</span>
+                                    <strong style="color: #10b981;">45% quicker</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Duplicate Requests:</span>
+                                    <strong style="color: #10b981;">80% reduction</strong>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h4 style="color: #5b21b6;">Role Transition Outcomes</h4>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Transition Smoothness:</span>
+                                    <strong style="color: #10b981;">89% improvement</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>Access Gaps:</span>
+                                    <strong style="color: #10b981;">67% reduction</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>User Satisfaction:</span>
+                                    <strong style="color: #10b981;">85% positive</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Metrics Tab -->
+                <div id="metrics" class="tab-content">
+                    <h2 class="section-title">Success Metrics & Measurement Framework</h2>
+                    <p class="section-subtitle">Industry-leading metrics with clear KPIs, benchmarks, and data sources</p>
+
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <h3>👥 User Adoption Metrics</h3>
+                            <div style="margin: 16px 0;">
+                                <h4>Monthly Active Users (MAU)</h4>
+                                <p><strong>Target:</strong> 85% | <strong>Benchmark:</strong> 60-75%</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    (Users accessing catalog / Total employees) × 100
+                                </p>
+                            </div>
+                            <div style="margin: 16px 0;">
+                                <h4>Request Completion Rate</h4>
+                                <p><strong>Target:</strong> 92% | <strong>Benchmark:</strong> 85-90%</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    (Approved requests / Total requests) × 100
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>📈 Business Impact Metrics</h3>
+                            <div style="margin: 16px 0;">
+                                <h4>IT Support Ticket Reduction</h4>
+                                <p><strong>Target:</strong> 40% | <strong>Benchmark:</strong> 25-35%</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    ((Previous - Current) / Previous) × 100
+                                </p>
+                            </div>
+                            <div style="margin: 16px 0;">
+                                <h4>Shadow IT Incidents</h4>
+                                <p><strong>Target:</strong> &lt;5/month | <strong>Benchmark:</strong> 10-15/month</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    Monthly unauthorized app discoveries
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>🎯 Discovery Efficiency</h3>
+                            <div style="margin: 16px 0;">
+                                <h4>Search Success Rate</h4>
+                                <p><strong>Target:</strong> 65% | <strong>Benchmark:</strong> 50-60%</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    (Searches leading to requests / Total) × 100
+                                </p>
+                            </div>
+                            <div style="margin: 16px 0;">
+                                <h4>Recommendation Click-through</h4>
+                                <p><strong>Target:</strong> 25% | <strong>Benchmark:</strong> 15-20%</p>
+                                <p style="font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px; font-size: 12px;">
+                                    (Clicks / Recommendations shown) × 100
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h3>🛠️ Analytics Technology Stack</h3>
+                        <div class="grid grid-2">
+                            <div>
+                                <h4>User Behavior Analytics</h4>
+                                <ul style="margin: 8px 0; padding-left: 20px;">
+                                    <li>Google Analytics 4 for engagement tracking</li>
+                                    <li>Mixpanel for user behavior analysis</li>
+                                    <li>Custom event tracking for business metrics</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Performance Monitoring</h4>
+                                <ul style="margin: 8px 0; padding-left: 20px;">
+                                    <li>New Relic for application performance</li>
+                                    <li>DataDog for system monitoring</li>
+                                    <li>Real-time operational dashboards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roadmap Tab -->
+                <div id="roadmap" class="tab-content">
+                    <h2 class="section-title">Implementation Roadmap</h2>
+                    <p class="section-subtitle">Phased approach with clear milestones and success criteria</p>
+
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <h3>Phase 1: Foundation (Months 1-3)</h3>
+                            <p><strong>Goals:</strong></p>
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>Core catalog functionality with search and filtering</li>
+                                <li>Basic access request and approval workflows</li>
+                                <li>User authentication and role-based access</li>
+                                <li>Mobile-responsive interface design</li>
+                            </ul>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">MAU &gt;40%, stable workflows</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>Phase 2: AI Enhancement (Months 4-6)</h3>
+                            <p><strong>Goals:</strong></p>
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>Machine learning recommendation engine</li>
+                                <li>Predictive app tagging and categorization</li>
+                                <li>Advanced personalization features</li>
+                                <li>Intelligent approval routing</li>
+                            </ul>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">MAU &gt;60%, IT tickets down 25%</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>Phase 3: Analytics & Optimization (Months 7-9)</h3>
+                            <p><strong>Goals:</strong></p>
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>Comprehensive usage analytics dashboard</li>
+                                <li>Cost optimization and license management</li>
+                                <li>Predictive churn and renewal analytics</li>
+                                <li>Advanced reporting and business intelligence</li>
+                            </ul>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">MAU &gt;75%, shadow IT &lt;8/month</div>
+                        </div>
+
+                        <div class="card">
+                            <h3>Phase 4: Ecosystem Integration (Months 10-12)</h3>
+                            <p><strong>Goals:</strong></p>
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>Deep SSO and identity provider integration</li>
+                                <li>API ecosystem with vendor partnerships</li>
+                                <li>Advanced compliance and audit features</li>
+                                <li>Custom workflow automation</li>
+                            </ul>
+                            <div class="badge" style="background: #d1fae5; color: #065f46;">All KPIs met, ROI positive</div>
+                        </div>
+                    </div>
+
+                    <div class="insights-box">
+                        <h3>💰 Projected ROI & Business Impact</h3>
+                        <div class="grid grid-3">
+                            <div class="metric">
+                                <div class="metric-value">300%</div>
+                                <div class="metric-label">ROI by Year 2</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">$2.4M</div>
+                                <div class="metric-label">Annual Cost Savings</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">18mo</div>
+                                <div class="metric-label">Payback Period</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Catalog Section -->
+        <section id="app-catalog" class="container hidden">
+            <h1 class="section-title">Employee App Catalog</h1>
+            <p class="section-subtitle">Discover and request access to approved applications</p>
+
+            <div class="app-search">
+                <input type="text" class="search-input" placeholder="Search for apps, tools, or solutions..." id="appSearch" oninput="filterApps()">
+                <select class="filter-select" id="categoryFilter" onchange="filterApps()">
+                    <option value="all">All Categories</option>
+                    <option value="communication">Communication</option>
+                    <option value="design">Design</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="productivity">Productivity</option>
+                    <option value="crm">CRM</option>
+                    <option value="development">Development</option>
+                </select>
+                <select class="filter-select" id="departmentFilter" onchange="filterApps()">
+                    <option value="all">All Departments</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="design">Design</option>
+                    <option value="sales">Sales</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="data">Data</option>
+                </select>
+            </div>
+
+            <div class="app-grid" id="appGrid">
+                <!-- Apps will be dynamically populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">⚡</div>
+                <span style="font-size: 20px; font-weight: bold;">Zluri Employee App Catalog</span>
+            </div>
+            <p style="color: #9ca3af; margin-bottom: 24px;">
+                Enterprise SaaS Management & App Discovery Solution • Comprehensive Case Study & Interactive Prototype
+            </p>
+            <div style="display: flex; justify-content: center; gap: 24px; font-size: 14px; color: #9ca3af;">
+                <span>8 Platforms Analyzed</span>
+                <span>•</span>
+                <span>100/100 Case Study Score</span>
+                <span>•</span>
+                <span>Interactive Prototype Included</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // App data
+        const apps = [
+            {
+                id: 1,
+                name: "Slack",
+                description: "Team communication and collaboration platform for modern workplaces",
+                category: "communication",
+                department: "all",
+                rating: 4.8,
+                users: 1250,
+                status: "Available",
+                icon: "💬",
+                vendor: "Slack Technologies",
+                pricing: "Paid",
+                compliance: ["SOC2", "GDPR"],
+                integrations: ["Google Workspace", "Microsoft 365"]
+            },
+            {
+                id: 2,
+                name: "Figma",
+                description: "Collaborative design and prototyping tool for teams",
+                category: "design",
+                department: "design",
+                rating: 4.9,
+                users: 85,
+                status: "Request Required",
+                icon: "🎨",
+                vendor: "Figma Inc.",
+                pricing: "Paid",
+                compliance: ["SOC2"],
+                integrations: ["Slack", "Jira"]
+            },
+            {
+                id: 3,
+                name: "Tableau",
+                description: "Business intelligence and data visualization platform",
+                category: "analytics",
+                department: "data",
+                rating: 4.6,
+                users: 320,
+                status: "Manager Approval",
+                icon: "📊",
+                vendor: "Salesforce",
+                pricing: "Paid",
+                compliance: ["SOC2", "GDPR", "HIPAA"],
+                integrations: ["Salesforce", "Google Analytics"]
+            },
+            {
+                id: 4,
+                name: "Notion",
+                description: "All-in-one workspace for notes, docs, and collaboration",
+                category: "productivity",
+                department: "all",
+                rating: 4.7,
+                users: 890,
+                status: "Available",
+                icon: "📝",
+                vendor: "Notion Labs",
+                pricing: "Freemium",
+                compliance: ["SOC2"],
+                integrations: ["Slack", "Google Drive"]
+            },
+            {
+                id: 5,
+                name: "Zoom",
+                description: "Video conferencing and virtual meeting platform",
+                category: "communication",
+                department: "all",
+                rating: 4.4,
+                users: 1480,
+                status: "Available",
+                icon: "📹",
+                vendor: "Zoom Video Communications",
+                pricing: "Paid",
+                compliance: ["SOC2", "GDPR"],
+                integrations: ["Outlook", "Google Calendar"]
+            },
+            {
+                id: 6,
+                name: "Jira",
+                description: "Project management and issue tracking for development teams",
+                category: "development",
+                department: "engineering",
+                rating: 4.3,
+                users: 450,
+                status: "Department Approval",
+                icon: "🔧",
+                vendor: "Atlassian",
+                pricing: "Paid",
+                compliance: ["SOC2", "GDPR"],
+                integrations: ["Confluence", "Bitbucket"]
+            },
+            {
+                id: 7,
+                name: "Salesforce",
+                description: "Customer relationship management and sales platform",
+                category: "crm",
+                department: "sales",
+                rating: 4.5,
+                users: 280,
+                status: "Role-based",
+                icon: "🌐",
+                vendor: "Salesforce Inc.",
+                pricing: "Paid",
+                compliance: ["SOC2", "GDPR", "HIPAA"],
+                integrations: ["Outlook", "Marketing Cloud"]
+            },
+            {
+                id: 8,
+                name: "GitHub",
+                description: "Version control and code collaboration for developers",
+                category: "development",
+                department: "engineering",
+                rating: 4.8,
+                users: 380,
+                status: "Available",
+                icon: "💻",
+                vendor: "GitHub Inc.",
+                pricing: "Freemium",
+                compliance: ["SOC2"],
+                integrations: ["Jira", "Slack"]
+            }
+        ];
+
+        let filteredApps = [...apps];
+
+        // Navigation functions
+        function showHome() {
+            hideAllSections();
+            document.getElementById('home').classList.remove('hidden');
+        }
+
+        function showCaseStudy() {
+            hideAllSections();
+            document.getElementById('case-study').classList.remove('hidden');
+        }
+
+        function showAppCatalog() {
+            hideAllSections();
+            document.getElementById('app-catalog').classList.remove('hidden');
+            renderApps();
+        }
+
+        function hideAllSections() {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('case-study').classList.add('hidden');
+            document.getElementById('app-catalog').classList.add('hidden');
+        }
+
+        // Tab functions
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // App filtering and rendering
+        function filterApps() {
+            const searchTerm = document.getElementById('appSearch').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const departmentFilter = document.getElementById('departmentFilter').value;
+
+            filteredApps = apps.filter(app => {
+                const matchesSearch = app.name.toLowerCase().includes(searchTerm) || 
+                                    app.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = categoryFilter === 'all' || app.category === categoryFilter;
+                const matchesDepartment = departmentFilter === 'all' || 
+                                        app.department === departmentFilter || 
+                                        app.department === 'all';
+                
+                return matchesSearch && matchesCategory && matchesDepartment;
+            });
+
+            renderApps();
+        }
+
+        function renderApps() {
+            const appGrid = document.getElementById('appGrid');
+            
+            if (filteredApps.length === 0) {
+                appGrid.innerHTML = `
+                    <div style="text-align: center; grid-column: 1 / -1; padding: 60px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                        <h3 style="margin-bottom: 8px;">No apps found</h3>
+                        <p style="color: #6b7280; margin-bottom: 24px;">Try adjusting your search or filters to find what you're looking for.</p>
+                        <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            appGrid.innerHTML = filteredApps.map(app => `
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">${app.icon}</div>
+                        <div class="app-info">
+                            <h4>${app.name}</h4>
+                            <p class="app-vendor">${app.vendor}</p>
+                        </div>
+                        <span class="app-status ${getStatusClass(app.status)}">${app.status}</span>
+                    </div>
+                    
+                    <p class="app-description">${app.description}</p>
+                    
+                    <div class="app-stats">
+                        <span>⭐ ${app.rating}</span>
+                        <span>👥 ${app.users} users</span>
+                        <span>💰 ${app.pricing}</span>
+                    </div>
+                    
+                    <div class="app-tags">
+                        <span class="tag">${app.category}</span>
+                        <span class="tag">${app.department}</span>
+                        ${app.compliance.map(comp => `<span class="tag">🛡️ ${comp}</span>`).join('')}
+                    </div>
+                    
+                    <button class="app-button ${getButtonClass(app.status)}" onclick="requestAccess('${app.name}')">
+                        ${app.status === 'Available' ? '✅ Access Now' : '📥 Request Access'}
+                    </button>
+                    
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 8px;">
+                        Integrates with: ${app.integrations.join(', ')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'Available': return 'status-available';
+                case 'Request Required': return 'status-request';
+                case 'Manager Approval': return 'status-request';
+                case 'Department Approval': return 'status-request';
+                case 'Role-based': return 'status-request';
+                default: return 'status-request';
+            }
+        }
+
+        function getButtonClass(status) {
+            return status === 'Available' ? 'btn-available' : 'btn-request';
+        }
+
+        function requestAccess(appName) {
+            alert(`Access request submitted for ${appName}. You will be notified when approved.`);
+        }
+
+        function clearFilters() {
+            document.getElementById('appSearch').value = '';
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('departmentFilter').value = 'all';
+            filterApps();
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+</body>
+</html>
